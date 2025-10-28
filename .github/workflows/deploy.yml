@@ -30,8 +30,15 @@ jobs:
       - name: Copy files to root
         run: |
           mkdir -p public
-          shopt -s dotglob
-          cp -r landing-page/src/* public/
+          cp landing-page/src/index.html public/
+          cp -r landing-page/src/styles public/
+          cp -r landing-page/src/scripts public/
+          cp -r landing-page/src/assets public/
+      
+      - name: Verify files
+        run: |
+          ls -la public/
+          echo "Files copied successfully"
       
       - name: Build
         run: echo "No build step needed"
