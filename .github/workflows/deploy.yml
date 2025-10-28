@@ -29,7 +29,9 @@ jobs:
       
       - name: Copy files to root
         run: |
-          cp -r landing-page/src/. .
+          mkdir -p public
+          shopt -s dotglob
+          cp -r landing-page/src/* public/
       
       - name: Build
         run: echo "No build step needed"
@@ -37,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'public'
       
       - name: Deploy to GitHub Pages
         id: deployment
